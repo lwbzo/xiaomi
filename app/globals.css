@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-fraunces), serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  --color-paper: #faf6f0;
+  --color-paper-dim: #f0eade;
+  --color-ink: #1c1b19;
+  --color-ink-soft: #47443f;
+  --color-rust: #b8432f;
+  --color-rust-soft: #d97a5f;
+  --color-slate: #5c6670;
+  --color-line: #ddd4c7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-rust);
+  color: var(--color-paper);
+}
+
+/* Đường viền "xé giấy" — signature element cho card bài viết */
+.torn-edge {
+  position: relative;
+}
+.torn-edge::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 8px;
+  background-image: linear-gradient(135deg, var(--color-paper) 50%, transparent 50%),
+    linear-gradient(45deg, var(--color-paper) 50%, transparent 50%);
+  background-size: 12px 8px;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 2px;
+}
